@@ -34,10 +34,16 @@
     "vscode": "^1.97.0"
   },
   "activationEvents": [
-    "onStartupFinished"
+    "onCommand:send-open-file-to-terminal.sendActiveFile"
   ],
   "contributes": {
-    "commands": [],
+    "commands": [
+      {
+        "command": "send-open-file-to-terminal.sendActiveFile",
+        "title": "Send Active File Path To Terminal",
+        "category": "Send Path"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "ext-name",

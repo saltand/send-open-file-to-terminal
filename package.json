@@ -25,6 +25,9 @@
   "engines": {
     "vscode": "^1.97.0"
   },
+  "activationEvents": [
+    "onCommand:send-open-file-to-terminal.sendActiveFile"
+  ],
   "contributes": {
     "commands": [
       {

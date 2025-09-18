@@ -1,24 +1,16 @@
 {
-  "publisher": "antfu",
-  "name": "ext-name",
-  "displayName": "ext-name",
-  "version": "0.0.0",
-  "private": true,
+  "publisher": "saltand",
+  "name": "send-open-file-to-terminal",
+  "displayName": "Send Open File To Terminal",
+  "version": "0.0.1",
+  "private": false,
   "packageManager": "pnpm@10.4.1",
-  "description": "",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "description": "Send active file path to VSCode terminal quickly",
+  "author": "saltand <u6a69a9@outlook.com>",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/ext-name#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antfu/ext-name"
-  },
-  "bugs": {
-    "url": "https://github.com/antfu/ext-name/issues"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/antfu"
+    "url": "https://github.com/saltand/send-open-file-to-terminal"
   },
   "categories": [
     "Other"
@@ -33,9 +25,6 @@
   "engines": {
     "vscode": "^1.97.0"
   },
-  "activationEvents": [
-    "onCommand:send-open-file-to-terminal.sendActiveFile"
-  ],
   "contributes": {
     "commands": [
       {
@@ -46,7 +35,7 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "ext-name",
+      "title": "Send Open File To Terminal",
       "properties": {}
     }
   },
@@ -59,9 +48,9 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "vscode:prepublish": "nr build",
-    "release": "bumpp",
-    "ext:package": "vsce package --no-dependencies",
-    "ext:publish": "vsxpub --no-dependencies"
+    "release": "bumpp && nr publish",
+    "publish": "vsce publish --no-dependencies",
+    "pack": "vsce package --no-dependencies"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.2.1",
@@ -72,14 +61,17 @@
     "bumpp": "^10.0.3",
     "eslint": "^9.20.1",
     "esno": "^4.8.0",
-    "ovsx": "^0.10.5",
     "pnpm": "^10.4.1",
     "reactive-vscode": "^0.2.10",
     "tsdown": "^0.9.6",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",
     "vitest": "^3.0.5",
-    "vscode-ext-gen": "^1.0.0",
-    "vsxpub": "^0.1.0"
+    "vscode-ext-gen": "^1.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

@@ -14,11 +14,7 @@ const { activate, deactivate } = defineExtension(() => {
         return
       }
 
-      const relativePath = getRelativePath(editor.document.uri)
-      if (!relativePath) {
-        window.showWarningMessage('Unable to resolve a workspace-relative path for the file')
-        return
-      }
+      const relativePath = getRelativePath(editor.document.uri) ?? editor.document.uri.fsPath
 
       const selection = editor.selections.find(sel => !sel.isEmpty) ?? editor.selection
       const hasSelection = selection && !selection.isEmpty

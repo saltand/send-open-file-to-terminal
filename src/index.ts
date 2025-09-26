@@ -36,7 +36,7 @@ function normalizePath(filePath: string) {
 }
 
 function formatPath(filePath: string) {
-  return `@${filePath}`
+  return ` @${filePath}`
 }
 
 function formatPathWithRange(filePath: string, start: number, end: number) {

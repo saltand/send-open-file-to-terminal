@@ -2,7 +2,7 @@
   "publisher": "saltand",
   "name": "send-open-file-to-terminal",
   "displayName": "Send Open File To Terminal",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "packageManager": "pnpm@10.4.1",
   "description": "Send active file path to VSCode terminal quickly",
@@ -25,14 +25,16 @@
   "engines": {
     "vscode": "^1.97.0"
   },
-  "activationEvents": [
-    "onCommand:send-open-file-to-terminal.sendActiveFile"
-  ],
   "contributes": {
     "commands": [
       {
         "command": "send-open-file-to-terminal.sendActiveFile",
         "title": "Send Active File Path To Terminal",
+        "category": "Send Path"
+      },
+      {
+        "command": "send-open-file-to-terminal.copyActiveFile",
+        "title": "Copy Active File Path To Clipboard",
         "category": "Send Path"
       }
     ],

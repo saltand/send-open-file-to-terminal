@@ -1,9 +1,10 @@
 import type { Selection, Terminal, Uri } from 'vscode'
 import path from 'node:path'
 import { defineExtension, useCommands } from 'reactive-vscode'
-import { window, workspace } from 'vscode'
+import { env, window, workspace } from 'vscode'
 
 const COMMAND_ID = 'send-open-file-to-terminal.sendActiveFile'
+const COPY_COMMAND_ID = 'send-open-file-to-terminal.copyActiveFile'
 
 const { activate, deactivate } = defineExtension(() => {
   useCommands({
@@ -27,6 +28,32 @@ const { activate, deactivate } = defineExtension(() => {
       const terminal = getOrCreateTerminal()
       terminal.sendText(payload, false)
       terminal.show()
+    },
+    [COPY_COMMAND_ID]: () => {
+      const editor = window.activeTextEditor
+      if (!editor || editor.document.isUntitled) {
+        window.showWarningMessage('No active saved file')
+        return
+      }
+
+      const relativePath = getRelativePath(editor.document.uri) ?? editor.document.uri.fsPath
+
+      const selection = editor.selections.find(sel => !sel.isEmpty) ?? editor.selection
+      const hasSelection = selection && !selection.isEmpty
+
+      const normalizedPath = normalizePath(relativePath)
+      const payload = hasSelection
+        ? formatPathWithRange(normalizedPath, selection.start.line + 1, getSelectionEndLine(selection))
+        : formatPath(normalizedPath)
+
+      env.clipboard.writeText(payload).then(
+        () => {
+          window.showInformationMessage('Path copied to clipboard')
+        },
+        (error) => {
+          window.showErrorMessage(`Failed to copy: ${error}`)
+        },
+      )
     },
   })
 })

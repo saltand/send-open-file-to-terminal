@@ -48,7 +48,7 @@ const { activate, deactivate } = defineExtension(() => {
 
       env.clipboard.writeText(payload).then(
         () => {
-          window.showInformationMessage('Path copied to clipboard')
+          // window.showInformationMessage('Path copied to clipboard')
         },
         (error) => {
           window.showErrorMessage(`Failed to copy: ${error}`)
